@@ -24,7 +24,6 @@ MY_PAASWORD=os.environ['PASS']
 app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config['SECRET_KEY'] = os.environ['KEY']
-app.config['CKEDITOR_SERVE_LOCAL'] = True
 app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 
 
@@ -268,4 +267,4 @@ def show_post(index):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=False)

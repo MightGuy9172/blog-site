@@ -1,15 +1,15 @@
 {% include "header.html" %}
 
 <!-- Page Header -->
-<header class="masthead bg-cover bg-center py-24 text-white" style="background-color: #dc2626;">
-  <div class="container mx-auto px-4 lg:px-5">
-    <div class="flex justify-center">
-      <div class="w-full max-w-3xl text-center">
+<header class="masthead bg-cover  bg-center py-24" style="background-image: url('{{ post.img_url }}');">
+  <div class="container mx-auto px-4 lg:px-5 ">
+    <div class="flex justify-center ">
+      <div class="w-full max-w-3xl text-center bg-white">
         <div class="post-heading">
-          <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-white drop-shadow-md">{{ post.title }}</h1>
-          <h2 class="subheading text-xl sm:text-2xl italic text-white mb-2">{{ post.subtitle }}</h2>
-          <p class="text-lg text-white mt-2 flex items-center justify-center gap-2">
-            Posted by <span class="font-semibold text-white">{{ post.author.name }}</span> on {{ post.date }}
+          <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-black drop-shadow-md">{{ post.title }}</h1>
+          <h2 class="subheading text-xl sm:text-2xl italic text-black mb-2">{{ post.subtitle }}</h2>
+          <p class="text-lg text-black mt-2 flex items-center justify-center gap-2">
+            Posted by <span class="font-semibold text-black">{{ post.author.name }}</span> on {{ post.date }}
           </p>
         </div>
       </div>
