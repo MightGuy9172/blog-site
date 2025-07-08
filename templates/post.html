@@ -1,0 +1,73 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead bg-cover bg-center py-24 text-white" style="background-color: #dc2626;">
+  <div class="container mx-auto px-4 lg:px-5">
+    <div class="flex justify-center">
+      <div class="w-full max-w-3xl text-center">
+        <div class="post-heading">
+          <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-white drop-shadow-md">{{ post.title }}</h1>
+          <h2 class="subheading text-xl sm:text-2xl italic text-white mb-2">{{ post.subtitle }}</h2>
+          <p class="text-lg text-white mt-2 flex items-center justify-center gap-2">
+            Posted by <span class="font-semibold text-white">{{ post.author.name }}</span> on {{ post.date }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article class="mb-16 mt-10">
+  <div class="container mx-auto px-4 lg:px-5">
+    <div class="flex justify-center">
+      <div class="w-full max-w-3xl text-lg leading-relaxed text-gray-800 prose prose-lg prose-blue dark:prose-invert">
+        {{ post.body | safe }}
+      </div>
+    </div>
+  </div>
+</article>
+
+{% if current_user.id==1 %}
+<div class="flex justify-center mb-10">
+  <a class="inline-block bg-green-600 text-white uppercase text-sm font-semibold py-2 px-6 rounded-full hover:bg-green-700 shadow-lg transition duration-300" href="{{ url_for('edit_post', index=post.id) }}">
+    Edit Post →
+  </a>
+</div>
+{% endif %}
+
+<!-- Comment Form -->
+<div class="max-w-3xl mx-auto px-4 py-8 bg-white rounded-lg shadow-md">
+  <form method="POST" action="{{ url_for('show_post',index=post.id) }}" novalidate>
+    {{ form.hidden_tag() }}
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='comment_text') }}
+    <div class="mb-4">
+      {{ form.comment_text.label(class="block text-lg font-medium text-gray-700 mb-2") }}
+      {{ form.comment_text(class="w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent") }}
+    </div>
+    <div>
+      {{ form.submit(class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded shadow-sm") }}
+    </div>
+  </form>
+</div>
+
+<!-- Comments Section -->
+<div class="max-w-3xl mx-auto mt-12 px-4">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Comments</h2>
+  <ul class="space-y-6">
+    {% for comment in post.comments %}
+    <li class="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg shadow">
+      <img src="{{ comment.comment_author.email | gravatar }}" alt="User Avatar" class="w-12 h-12 rounded-full object-cover border border-gray-300">
+      <div>
+        <p class="text-gray-800 text-base leading-relaxed">
+          {{ comment.text | safe }}
+        </p>
+        <span class="block text-sm text-gray-500 mt-2">&ndash; {{ comment.comment_author.name }}</span>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% include "footer.html" %}

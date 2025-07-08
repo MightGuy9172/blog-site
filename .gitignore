@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask instance folder
+instance/
+*.db
+
+# Environment variables
+.env
+
+# Node.js modules
+node_modules/
+
+# Static cache / builds
+static/ckeditor/build/
+static/ckeditor/node_modules/
+
+# Editor settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Logs
+*.log
+
+# Coverage reports
+htmlcov/
+.coverage
+
+# JetBrains or PyCharm project files
+*.iml

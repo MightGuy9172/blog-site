@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bloggy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
+
+    <!-- Font Awesome icons (free version) -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" />
+
+    <!-- Tailwind CSS (compiled to output.css) -->
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
+    <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md" id="mainNav">
+        <div class="container mx-auto px-4 lg:px-5 flex items-center justify-between flex-wrap">
+            <!-- Logo / Brand -->
+            <a class="text-xl font-bold py-4" href="index.html">Bloggy</a>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="block lg:hidden text-gray-700 hover:text-gray-900 focus:outline-none">
+                Menu
+                <i class="fas fa-bars ml-2"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <div id="navbarResponsive" class="hidden w-full lg:flex lg:items-center lg:w-auto">
+                <ul class="lg:flex lg:ml-auto space-y-2 lg:space-y-0 lg:space-x-6 py-4 lg:py-0">
+                    <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('get_all_posts') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('about') }}">About</a>
+                    </li>
+
+                        {% if current_user.is_authenticated %}
+                         <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                        {% else %}
+                    <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                        {% endif %}
+
+                    <li class="nav-item">
+                        <a class="block text-gray-700 hover:text-blue-600 px-3 py-3 lg:py-4" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

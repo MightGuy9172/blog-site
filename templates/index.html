@@ -1,0 +1,64 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header class="masthead bg-cover bg-center py-24 text-white" style="background-image: url('https://images.unsplash.com/photo-1470092306007-055b6797ca72?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80')">
+    <div class="container mx-auto px-4 lg:px-5">
+        <div class="flex justify-center">
+            <div class="w-full max-w-3xl text-center">
+                <div class="site-heading">
+                    <h1 class="text-4xl sm:text-5xl font-bold">Welcome
+                        {% if current_user.is_authenticated %}
+                        {{ current_user.name }} !
+                        {% endif %}
+                        Bloggy</h1>
+                    <span class="subheading text-xl sm:text-2xl italic text-gray-100">Stories that stick. Words that matter.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container mx-auto px-4 lg:px-5 mt-12">
+    <div class="flex justify-center">
+        <div class="w-full max-w-3xl">
+
+            <!-- Post preview -->
+            {% for post in all_posts %}
+           <div class="post-preview mb-10">
+                  <a href="{{ url_for('show_post', index=post.id) }}">
+                    <h2 class="post-title text-2xl font-bold text-gray-900 hover:text-blue-600 transition duration-300">
+                      {{ post.title }}
+                    </h2>
+                    <h3 class="post-subtitle text-lg text-gray-700 mt-1">
+                      {{ post.subtitle }}
+                    </h3>
+                  </a>
+
+                  <!-- Author and Date -->
+                 <p class="text-sm text-gray-500 italic mt-2 flex items-center gap-2">
+  Posted by <span class="text-gray-700 italic font-medium">{{ post.author.name }}</span> on {{ post.date }}
+ <a href="{{ url_for('delete_post', index=post.id) }}"
+     class="text-red-600 hover:text-red-800 ml-3">
+    {% if current_user.id==1 %}
+                        ❌
+                        {% endif %}
+  </a>
+</p>
+                            <hr class="my-8 border-gray-300" />
+            {% endfor %}
+
+            <!-- Pager -->
+               {% if current_user.id==1 %}
+                        <div class="flex justify-end mb-10">
+                <a class="inline-block bg-blue-600 text-white uppercase text-sm font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300" href="{{ url_for('make_post') }}">
+                    Create Posts →
+                </a>
+            </div>
+                        {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}
