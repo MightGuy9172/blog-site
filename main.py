@@ -24,8 +24,8 @@ MY_PAASWORD=os.environ['PASS']
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ['KEY']
-app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 app.config['CKEDITOR_SERVE_LOCAL'] = True
+app.config['CKEDITOR_PKG_TYPE'] = 'standard'
 ckeditor = CKEditor(app)
 
 
